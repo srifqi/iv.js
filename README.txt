@@ -4,8 +4,8 @@ iv.js
 Simple Image Viewer for Web Pages in Javascript
 
 
-##Usage
-```javascript
+#Usage
+===================================
 //build container
 var myViewer = new IV();
 myViewer.container = document.body;
@@ -22,4 +22,4 @@ myViewer.height = 600;
 
 //draw
 myViewer.draw();
-```
+===================================
