@@ -36,54 +36,54 @@ IV.prototype = {
 	},
 	draw: function(){
 		var wLonger = this.width > this.height ? true : false;
-		this.container.innerHTML = "<div class='ivjs-container' style='"+
-				"position:relative;"+
-				"width:"+this.width+";"+
-				"height:"+this.height+";"+
-				"background:black;"+
-				"color:white;"+
-				"display:table-cell;"+
-				"vertical-align:middle;"+
-				"text-align:center;"+
-		"'>"+
-			"<style>"+
-				"div.ivjs-container div{"+
-					"opacity:0;"+
-					"position:absolute;"+
-					"top:"+(this.height*2/5)+"px;"+
-					"font-size:"+(this.height/5)+"px;"+
-				"}"+
-				"div.ivjs-container:hover div{"+
-					"opacity:1;"+
-				"}"+
-			"</style>"+
-			"<img src='"+this.list[this.at].url+"' style='"+
-				"max-width:"+this.width+";"+
-				"max-height:"+this.height+";"+
-			"' />"+
-			"<div style='"+
-				"left:0px;cursor:pointer;"+
-				"width:"+(this.width/10)+"px;'"+
-			" onclick='IV"+this.id+"_prev()'><b>&lt;</b></div>"+
-			"<div style='"+
-				"right:0px;cursor:pointer;"+
-				"width:"+(this.width/10)+"px;'"+
-			" onclick='IV"+this.id+"_next()'><b>&gt;</b></div>"+
-			"<div style='"+
-				"top:0px;left:"+(this.width/10)+"px;"+
-				"width:"+(this.width*8/10)+"px;"+
-				"height:"+(this.height)+"px;"+
-				"padding:8px;"+
-			"'>"+
-				"<span style='"+
-					"font-family:Arial;"+
-					"font-size:20px;"+
-					"background:black;"+
-				"'>"+
-					this.list[this.at].desc+
-				"</span>"+
-			"</div>"+
-		"</div>";
-		console.log(this.container.innerHTML);
+		this.container.innerHTML = [
+			"<table class='ivjs-container' style='",
+				"background:black url(",this.list[this.at].url,");",
+				"background-position:center;",
+				"background-repeat:no-repeat;",
+				"background-size:",
+					(wLonger===true?"auto 100%;":"100% auto;"),
+			"'>",
+				"<style>",
+					".ivjs-container td {",
+						"height:100%;",
+						"color:white;",
+						"font-size:",(this.width/5),"px;",
+						"opacity:0;",
+					"}",
+					".ivjs-container:hover td {",
+						"opacity:1;",
+					"}",
+				"</style>",
+				"<tbody>",
+					"<tr>",
+						"<td ",
+							"style='cursor:pointer;width:"+(this.width/10)+"px;'",
+							"onclick='IV",this.id,"_prev()'",
+						">&lt;</td>",
+						"<td>",
+							"<div style='",
+								"width:"+(this.width*8/10)+"px;",
+								"height:"+(this.height)+"px;",
+								"text-align:center;",
+								"padding:8px;",
+							"'>",
+								"<span style='",
+									"font-family:Arial;",
+									"font-size:20px;",
+									"background:black;",
+								"'>",
+									this.list[this.at].desc,
+								"</span>",
+							"</div>",
+						"</td>",
+						"<td ",
+							"style='cursor:pointer;width:"+(this.width/10)+"px;'",
+							"onclick='IV",this.id,"_next()'",
+						">&gt;</td>",
+					"</tr>",
+				"</tbody>",
+			"</table>"
+		].join("");
 	}
 };
